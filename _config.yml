@@ -1,0 +1,12 @@
+title: Logeman Lab
+description: Studying the neural mechanisms that control social behavior.
+url: ""
+baseurl: ""
+
+markdown: kramdown
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
