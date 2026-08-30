@@ -8,7 +8,57 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
   <body>
+    <header class="site-header">
+      <div class="site-branding">
+        <a class="site-logo" href="{{ '/' | relative_url }}" aria-label="Logeman Lab home">
+          <span class="site-logo-placeholder" aria-hidden="true">
+            <span class="site-logo-placeholder-name">LOGEMAN LAB</span>
+            <span class="site-logo-placeholder-detail">Horizontal logo placeholder</span>
+          </span>
+          <img
+            class="site-logo-image"
+            src="{{ '/assets/images/logeman-lab-logo.png' | relative_url }}"
+            alt="Logeman Lab"
+          >
+        </a>
+      </div>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/research/' | relative_url }}">Research</a>
+        <a href="{{ '/brandon/' | relative_url }}">Brandon</a>
+        <a href="{{ '/team/' | relative_url }}">Team</a>
+        <a href="{{ '/lexington/' | relative_url }}">Lexington, KY</a>
+        <a href="{{ '/join/' | relative_url }}">Join</a>
+      </nav>
+    </header>
+
     {{ content }}
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="footer-institution">
+          <img
+            class="site-footer-logo"
+            src="{{ '/assets/images/uk-college-of-medicine-white.svg' | relative_url }}"
+            alt="University of Kentucky College of Medicine"
+          >
+
+          <div class="footer-affiliation">
+            <p class="footer-institution-name">University of Kentucky</p>
+            <p>College of Medicine</p>
+            <p>Department of Molecular &amp; Cellular Biochemistry</p>
+            <p>Department of Neuroscience</p>
+          </div>
+        </div>
+
+        <div class="footer-address">
+          <p>Biomedical Biological Science Research Building</p>
+          <p>741 S. Limestone</p>
+          <p>Room B155</p>
+          <p>Lexington, KY 40508</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
-
