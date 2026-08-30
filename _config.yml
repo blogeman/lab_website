@@ -1,7 +1,7 @@
 title: Logeman Lab
 description: Studying the neural mechanisms that control social behavior.
-url: ""
-baseurl: ""
+url: "https://blogeman.github.io"
+baseurl: "/lab_website"
 
 markdown: kramdown
 
