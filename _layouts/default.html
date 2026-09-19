@@ -7,31 +7,37 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
-  <body>
+  <body{% if page.url == '/' %} class="home-page"{% endif %}>
     <header class="site-header">
-      <div class="site-branding">
-        <a class="site-logo" href="{{ '/' | relative_url }}" aria-label="Logeman Lab home">
-          <span class="site-logo-placeholder" aria-hidden="true">
-            <span class="site-logo-placeholder-name">LOGEMAN LAB</span>
-            <span class="site-logo-placeholder-detail">Horizontal logo placeholder</span>
-          </span>
-          <img
-            class="site-logo-image"
-            src="{{ '/assets/images/logeman-lab-logo.png' | relative_url }}"
-            alt="Logeman Lab"
-          >
-        </a>
-      </div>
+      <a class="site-name" href="{{ '/' | relative_url }}">Logeman Lab</a>
 
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/research/' | relative_url }}">Research</a>
-        <a href="{{ '/brandon/' | relative_url }}">Brandon</a>
-        <a href="{{ '/team/' | relative_url }}">Team</a>
-        <a href="{{ '/lexington/' | relative_url }}">Lexington, KY</a>
-        <a href="{{ '/join/' | relative_url }}">Join</a>
+        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+        <a href="{{ '/research/' | relative_url }}"{% if page.url == '/research/' %} aria-current="page"{% endif %}>Research</a>
+        <a href="{{ '/technology/' | relative_url }}"{% if page.url == '/technology/' %} aria-current="page"{% endif %}>Technology</a>
+        <a href="{{ '/brandon/' | relative_url }}"{% if page.url == '/brandon/' %} aria-current="page"{% endif %}>Brandon</a>
+        <a href="{{ '/team/' | relative_url }}"{% if page.url == '/team/' %} aria-current="page"{% endif %}>Team</a>
+        <a href="{{ '/lexington/' | relative_url }}"{% if page.url == '/lexington/' %} aria-current="page"{% endif %}>Lexington, KY</a>
+        <a href="{{ '/join/' | relative_url }}"{% if page.url == '/join/' %} aria-current="page"{% endif %}>Join</a>
       </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" hidden>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+      <nav class="mobile-nav-links" aria-label="Mobile navigation">
+        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+        <a href="{{ '/research/' | relative_url }}"{% if page.url == '/research/' %} aria-current="page"{% endif %}>Research</a>
+        <a href="{{ '/technology/' | relative_url }}"{% if page.url == '/technology/' %} aria-current="page"{% endif %}>Technology</a>
+        <a href="{{ '/brandon/' | relative_url }}"{% if page.url == '/brandon/' %} aria-current="page"{% endif %}>Brandon</a>
+        <a href="{{ '/team/' | relative_url }}"{% if page.url == '/team/' %} aria-current="page"{% endif %}>Team</a>
+        <a href="{{ '/lexington/' | relative_url }}"{% if page.url == '/lexington/' %} aria-current="page"{% endif %}>Lexington, KY</a>
+        <a href="{{ '/join/' | relative_url }}"{% if page.url == '/join/' %} aria-current="page"{% endif %}>Join</a>
+      </nav>
+    </div>
 
     {{ content }}
 
@@ -60,5 +66,84 @@
         </div>
       </div>
     </footer>
+    <script>
+      (() => {
+        const button = document.querySelector('.menu-toggle');
+        if (!button) return;
+        const menu = document.getElementById(button.getAttribute('aria-controls'));
+        if (!menu) return;
+
+        const mobile = window.matchMedia('(max-width: 720px)');
+        const background = document.querySelectorAll('main, .site-footer, .site-name, .site-nav');
+        let open = false;
+        let savedY = 0;
+        let savedStyles;
+        const body = document.body;
+        const focusable = () => [button, ...menu.querySelectorAll('a[href], button:not([disabled])')];
+
+        function closeMenu(returnFocus = true) {
+          if (!open) return;
+          open = false;
+          button.setAttribute('aria-expanded', 'false');
+          button.setAttribute('aria-label', 'Open menu');
+          body.classList.remove('mobile-menu-open');
+          background.forEach(element => { element.inert = false; });
+          Object.assign(body.style, savedStyles);
+          window.scrollTo(0, savedY);
+          if (returnFocus) button.focus({ preventScroll: true });
+          menu.inert = true;
+          menu.setAttribute('aria-hidden', 'true');
+        }
+
+        function openMenu() {
+          if (open || !mobile.matches) return;
+          savedY = window.scrollY;
+          savedStyles = { position: body.style.position, top: body.style.top, width: body.style.width };
+          const rect = button.getBoundingClientRect();
+          button.style.setProperty('--menu-button-top', `${rect.top}px`);
+          button.style.setProperty('--menu-button-right', `${window.innerWidth - rect.right}px`);
+          Object.assign(body.style, { position: 'fixed', top: `-${savedY}px`, width: '100%' });
+          open = true;
+          menu.inert = false;
+          menu.setAttribute('aria-hidden', 'false');
+          button.setAttribute('aria-expanded', 'true');
+          button.setAttribute('aria-label', 'Close menu');
+          body.classList.add('mobile-menu-open');
+          background.forEach(element => { element.inert = true; });
+          menu.querySelector('a').focus({ preventScroll: true });
+        }
+
+        button.hidden = false;
+        body.classList.add('mobile-menu-ready');
+        button.addEventListener('click', () => open ? closeMenu() : openMenu());
+        menu.addEventListener('click', event => {
+          if (event.target.closest('a[href]')) closeMenu();
+        });
+        document.addEventListener('keydown', event => {
+          if (!open) return;
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeMenu();
+          } else if (event.key === 'Tab') {
+            const items = focusable();
+            const index = items.indexOf(document.activeElement);
+            event.preventDefault();
+            items[(index + (event.shiftKey ? -1 : 1) + items.length) % items.length].focus();
+          }
+        });
+        document.addEventListener('focusin', event => {
+          if (open && event.target !== button && !menu.contains(event.target)) {
+            menu.querySelector('a').focus({ preventScroll: true });
+          }
+        });
+        mobile.addEventListener('change', () => {
+          if (!mobile.matches) {
+            const wasOpen = open;
+            closeMenu(false);
+            if (wasOpen) document.querySelector('.site-nav a[aria-current="page"], .site-nav a').focus({ preventScroll: true });
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
