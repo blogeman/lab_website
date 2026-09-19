@@ -8,6 +8,7 @@
   --muted: #666963;
   --line: #cfcdc5;
   --accent: #9a412d;
+  --surface: #f3f1ea;
   --page-width: 1520px;
   --side-space: clamp(1.25rem, 4vw, 5rem);
 }
@@ -377,87 +378,11 @@ h1 {
 .lexington-geology-visual {
   max-width: 38rem;
   padding: clamp(1rem, 2.5vw, 1.75rem);
-  background: #f3f1ea;
+  background: var(--surface);
 }
 
 .lexington-section-geology .lexington-section-content > p {
   margin-bottom: 0;
-}
-
-.lexington-section-horse .lexington-section-content > p {
-  margin-bottom: 0;
-}
-
-.lexington-trail-list {
-  display: grid;
-  gap: clamp(3rem, 6vw, 5rem);
-}
-
-.lexington-trail {
-  display: grid;
-  grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
-}
-
-.lexington-trail + .lexington-trail {
-  padding-top: clamp(3rem, 6vw, 5rem);
-  border-top: 1px solid var(--line);
-}
-
-.lexington-trail-visual {
-  width: 100%;
-  max-width: 22rem;
-  min-width: 0;
-  margin: 0;
-}
-
-.lexington-trail-visual img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.lexington-trail-copy h3 {
-  margin-bottom: 1rem;
-  font-size: clamp(1.5rem, 2.25vw, 2rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-}
-
-.lexington-trail-copy {
-  min-width: 0;
-}
-
-.lexington-trail-copy p {
-  margin-bottom: 1.5rem;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.lexington-trail-copy a {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.035em;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.28em;
-}
-
-.lexington-trail-copy a:hover {
-  color: var(--text);
-}
-
-.lexington-card-kicker {
-  margin-bottom: 1.25rem;
-  color: var(--accent);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .lexington-section h2,
@@ -507,17 +432,6 @@ h1 {
 .lexington-map figcaption strong {
   color: var(--text);
   font-weight: 600;
-}
-
-.lexington-family-note {
-  min-width: 0;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  border: 1px solid var(--line);
-}
-
-.lexington-family-note > p:not(.lexington-card-kicker) {
-  margin-bottom: 1.75rem;
-  color: var(--muted);
 }
 
 .lexington-link-row a,
@@ -585,15 +499,6 @@ h1 {
 
 .lexington-affordability-visual figcaption a:hover {
   color: var(--text);
-}
-
-.lexington-family-note {
-  margin-top: 2.5rem;
-  background: #f3f1ea;
-}
-
-.lexington-family-note .lexington-link-row {
-  margin-bottom: 0;
 }
 
 .lexington-move {
@@ -862,14 +767,6 @@ h1 {
     max-width: none;
   }
 
-  .lexington-trail {
-    grid-template-columns: 1fr;
-  }
-
-  .lexington-trail-visual {
-    max-width: 100%;
-  }
-
   .lexington-move {
     margin-inline: calc(-1 * var(--side-space));
   }
@@ -1095,4 +992,169 @@ h1 {
   .team-member-photo {
     margin-inline: auto;
   }
+}
+
+/* Lexington recruiting page: full-width media, with the existing 82rem content width. */
+.lexington-page {
+  width: 100%;
+  padding: 0 0 clamp(6rem, 11vw, 11rem);
+}
+
+.lexington-container {
+  width: min(100%, 82rem);
+  margin-inline: auto;
+  padding-inline: var(--side-space);
+}
+
+.lexington-bleed {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.lexington-hero-visual > img {
+  height: clamp(16rem, 35vw, 34rem);
+  object-fit: cover;
+}
+
+.lexington-intro {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 13rem);
+  max-width: 82rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+.lexington-lede { margin-bottom: 1.5rem; }
+
+.lexington-accolade {
+  margin-bottom: 0;
+  padding: 0 0 1.5rem;
+  border-left: 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+.lexington-map-intro { max-width: 13rem; }
+
+.lexington-section {
+  display: block;
+  border-top: 0;
+}
+
+.lexington-section h2 { margin-bottom: 1.75rem; }
+
+.lexington-feature-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.lexington-section-geology .lexington-section-content > p { margin-bottom: 1.5rem; }
+.lexington-section-content > p:last-child { margin-bottom: 0; }
+
+.lexington-photo-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 18rem;
+  padding: 2rem;
+  border: 1px dashed var(--muted);
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.lexington-photo-placeholder span { max-width: 30rem; }
+.lexington-hero-placeholder { min-height: 5rem; padding: 1rem; }
+.lexington-food-visual .lexington-photo-placeholder { min-height: 32rem; }
+.lexington-section-art { padding-top: 0; }
+.lexington-section-art > .lexington-bleed .lexington-photo-placeholder { min-height: clamp(18rem, 36vw, 36rem); }
+.lexington-section-art > .lexington-section-content { padding-top: clamp(3rem, 6vw, 5rem); }
+.lexington-section-art .lexington-section-content > p { max-width: 62rem; }
+
+.lexington-link-pending {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.lexington-section-outside { background: var(--surface); }
+.lexington-outside-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+.lexington-outside-card { min-width: 0; }
+.lexington-outside-card .lexington-feature-image {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.lexington-outside-card .lexington-photo-placeholder { min-height: 0; aspect-ratio: 4 / 3; padding: 1rem; }
+.lexington-outside-card h3 {
+  margin-block: 1.25rem 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+.lexington-outside-card h3 a,
+.lexington-community a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+.lexington-outside-card p { color: var(--muted); }
+
+.lexington-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  margin-block: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.lexington-skyline-visual {
+  max-width: none;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+}
+.lexington-numbers > div { display: flex; flex-direction: column; }
+.lexington-numbers dt { color: var(--muted); font-size: 0.85rem; }
+.lexington-numbers dd {
+  order: -1;
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+.lexington-section-content > .lexington-sources { font-size: 0.85rem; }
+.lexington-section-content > .lexington-community { max-width: none; font-size: 0.85rem; }
+.lexington-cta p { color: var(--muted); }
+.lexington-link-row .lexington-primary-link {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  background: var(--accent);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.lexington-link-row .lexington-primary-link:hover { background: var(--text); color: #FFFFFF; }
+.lexington-cta .lexington-link-row { margin-bottom: 0; }
+
+/* Keep the moved resource component comfortable within Join's narrower container. */
+.content-page .lexington-move {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 4rem;
+  gap: 2rem;
+}
+
+@media (max-width: 960px) {
+  .lexington-intro,
+  .lexington-feature-section { grid-template-columns: minmax(0, 1fr); }
+  .lexington-section-food .lexington-food-visual { grid-row: 1; }
+  .lexington-food-visual .lexington-photo-placeholder { min-height: 24rem; }
+  .lexington-outside-grid,
+  .lexington-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .lexington-outside-grid { grid-template-columns: minmax(0, 1fr); }
 }
