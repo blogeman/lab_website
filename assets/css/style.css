@@ -997,7 +997,7 @@ h1 {
 /* Lexington recruiting page: full-width media, with the existing 82rem content width. */
 .lexington-page {
   width: 100%;
-  padding: 0 0 clamp(6rem, 11vw, 11rem);
+  padding: 0;
 }
 
 .lexington-container {
@@ -1021,7 +1021,7 @@ h1 {
   grid-template-columns: minmax(0, 1fr) minmax(0, 13rem);
   max-width: 82rem;
   gap: clamp(2rem, 5vw, 5rem);
-  padding-block: clamp(3rem, 6vw, 6rem);
+  padding-block: clamp(3rem, 6vw, 6rem) clamp(2rem, 4vw, 4rem);
 }
 
 .lexington-lede { margin-bottom: 1.5rem; }
@@ -1049,6 +1049,22 @@ h1 {
   gap: clamp(2rem, 5vw, 5rem);
 }
 
+/* Food is a text-only pause between the geology map and mural. */
+.lexington-section-food { padding-block: clamp(2rem, 4vw, 4rem); }
+.lexington-section-food .lexington-section-content { max-width: 48rem; }
+.lexington-food-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
+  line-height: 1.75;
+}
+.lexington-section-food .lexington-section-content > p { margin-bottom: 1.25rem; }
+.lexington-food-list { color: var(--muted); }
+.lexington-food-list strong { color: var(--text); font-weight: 700; }
+.lexington-food-list li + li { margin-top: 0.25rem; }
+
+.lexington-section-geology { padding-block: 0; }
 .lexington-section-geology .lexington-section-content > p { margin-bottom: 1.5rem; }
 .lexington-section-content > p:last-child { margin-bottom: 0; }
 
@@ -1066,7 +1082,6 @@ h1 {
 
 .lexington-photo-placeholder span { max-width: 30rem; }
 .lexington-hero-placeholder { min-height: 5rem; padding: 1rem; }
-.lexington-food-visual .lexington-photo-placeholder { min-height: 32rem; }
 .lexington-section-art { padding-top: 0; }
 .lexington-section-art > .lexington-bleed .lexington-photo-placeholder { min-height: clamp(18rem, 36vw, 36rem); }
 .lexington-section-art > .lexington-section-content { padding-top: clamp(3rem, 6vw, 5rem); }
@@ -1079,6 +1094,7 @@ h1 {
 }
 
 .lexington-section-outside { background: var(--surface); }
+.lexington-swipe-cue { display: none; }
 .lexington-outside-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1128,6 +1144,7 @@ h1 {
 }
 .lexington-section-content > .lexington-sources { font-size: 0.85rem; }
 .lexington-section-content > .lexington-community { max-width: none; font-size: 0.85rem; }
+.lexington-section-affordability { padding-bottom: 2rem; }
 .lexington-cta p { color: var(--muted); }
 .lexington-link-row .lexington-primary-link {
   display: inline-block;
@@ -1149,12 +1166,62 @@ h1 {
 @media (max-width: 960px) {
   .lexington-intro,
   .lexington-feature-section { grid-template-columns: minmax(0, 1fr); }
-  .lexington-section-food .lexington-food-visual { grid-row: 1; }
-  .lexington-food-visual .lexington-photo-placeholder { min-height: 24rem; }
   .lexington-outside-grid,
   .lexington-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 720px) {
-  .lexington-outside-grid { grid-template-columns: minmax(0, 1fr); }
+  .lexington-intro { gap: 1.25rem; }
+
+  .lexington-map-intro {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: none;
+  }
+
+  .lexington-map-intro .lexington-map-image {
+    flex: 0 0 7rem;
+    width: 7rem;
+    margin: 0;
+  }
+
+  .lexington-map-intro figcaption {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .lexington-section-outside .lexington-section-content > p:first-of-type {
+    margin-bottom: 0.75rem;
+  }
+
+  .lexington-section-outside { padding-bottom: 1.5rem; }
+  .lexington-section-outside + .lexington-section-affordability { padding-top: 1.5rem; }
+  .lexington-outside-card > p:last-child { margin-bottom: 0; }
+
+  .lexington-section-content > .lexington-swipe-cue {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .lexington-outside-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .lexington-outside-grid::-webkit-scrollbar { display: none; }
+
+  .lexington-outside-card {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }

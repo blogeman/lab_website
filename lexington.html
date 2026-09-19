@@ -8,8 +8,6 @@ permalink: /lexington/
 <main class="lexington-page">
   <figure class="lexington-feature-visual lexington-bleed lexington-hero-visual">
     <img class="lexington-feature-image" src="{{ '/assets/images/lexington-horse-country.jpeg' | relative_url }}" alt="Horses grazing in green pastures divided by white fences, with a distant city skyline.">
-    <!-- TODO photograph: Replace the horse-country fallback with an original photograph of everyday life in Lexington. -->
-    <div class="lexington-photo-placeholder lexington-hero-placeholder" role="img" aria-label="Everyday life in Lexington, showing the city and its people."><span>TODO photograph: Everyday life in Lexington, showing the city and its people.</span></div>
   </figure>
   <header class="lexington-intro lexington-container">
     <div class="lexington-intro-copy">
@@ -35,19 +33,18 @@ permalink: /lexington/
     </figure>
   </section>
 
-  <section class="lexington-section lexington-feature-section lexington-section-food lexington-container" aria-labelledby="lexington-food">
-    <div class="lexington-feature-copy lexington-section-content">
+  <section class="lexington-section lexington-section-food lexington-container" aria-labelledby="lexington-food">
+    <div class="lexington-section-content">
       <h2 id="lexington-food">Food</h2>
-      <!-- TODO fact check: The Southland/Richmond Road corridor claim is unverified. Brandon should replace it with restaurants he actually goes to. -->
-      <p>Nearly everything a kitchen needs is within an hour's drive, so the restaurants here were farm-to-table before the phrase existed and never had to say so. Ouita Michel's kitchens have collected James Beard nominations for two decades. The Distillery District has grown up around the old James E. Pepper bourbon works into a dense strip of breweries and kitchens. And the West African, Ethiopian, and Sudanese restaurants along Southland and Richmond Road are usually where you should actually be eating.</p>
-      <div class="lexington-link-row" aria-label="Food and drink resources"><a href="https://www.lexingtonfarmersmarket.com/">Farmers' Market <span aria-hidden="true">↗</span></a>
-<a href="https://www.visitlex.com/things-to-do/bourbon/distilleries/kentucky-bourbon-trail/">Kentucky Bourbon Trail <span aria-hidden="true">↗</span></a>
-<a href="https://www.visitlex.com/things-to-do/bars-and-breweries/breweries/brewgrass-trail/">Brewgrass Trail <span aria-hidden="true">↗</span></a></div>
+      <p>Nearly everything a kitchen needs is within an hour's drive, so the restaurants here were farm-to-table before the phrase existed and never had to say so. A few places we go:</p>
+      <ul class="lexington-food-list">
+        <li><strong>Holly Hill Inn</strong> — Ouita Michel's flagship, in Midway, worth the drive</li>
+        <li><strong>Middle Fork Kitchen Bar</strong> — Distillery District, small plates</li>
+        <li><strong>Sav's Grill</strong> — West African, on South Limestone</li>
+        <li><strong>Ramen House Sapporo</strong> — the late-night one</li>
+        <li><strong>Lexington Farmers' Market</strong> — Saturdays, year-round</li>
+      </ul>
     </div>
-    <figure class="lexington-feature-visual lexington-food-visual">
-      <!-- TODO photograph: An original photograph of a Lexington meal or farmers' market. -->
-      <div class="lexington-photo-placeholder" role="img" aria-label="A Lexington meal or farmers’ market."><span>TODO photograph: A Lexington meal or farmers’ market.</span></div>
-    </figure>
   </section>
 
   <section class="lexington-section lexington-section-art" aria-labelledby="lexington-art">
@@ -76,7 +73,23 @@ permalink: /lexington/
     <div class="lexington-container lexington-section-content">
       <h2 id="lexington-outside">Outside</h2>
       <p>The compact city has a practical consequence: all four of these are half an hour or less from the bench.</p>
+      <p class="lexington-swipe-cue">Swipe to explore <span aria-hidden="true">→</span></p>
       <div class="lexington-outside-grid">
+        <article class="lexington-outside-card">
+          <figure class="lexington-feature-visual">
+            <img
+              class="lexington-feature-image"
+              src="{{ '/assets/images/lexington-gatton-park.jpg' | relative_url }}"
+              alt="An elevated view of green lawns, winding paths, garden beds, and a footbridge over a creek, with downtown buildings beyond."
+              width="1200"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
+          <h3><a href="https://gattonpark.org/visit/faqs/">Gatton Park</a></h3>
+          <p>Eleven acres downtown, built on a parking lot, with the creek Lexington was founded on running through the middle of it.</p>
+        </article>
         <article class="lexington-outside-card">
           <figure class="lexington-feature-visual">
             <img
@@ -122,27 +135,15 @@ permalink: /lexington/
           <h3><a href="https://arboretum.mgcafe.uky.edu">The Arboretum</a></h3>
           <p>A hundred acres of the state botanical garden on UK's own campus, including a path that walks you through all seven of Kentucky's physiographic regions.</p>
         </article>
-        <article class="lexington-outside-card">
-          <figure class="lexington-feature-visual">
-            <img
-              class="lexington-feature-image"
-              src="{{ '/assets/images/lexington-gatton-park.jpg' | relative_url }}"
-              alt="An elevated view of green lawns, winding paths, garden beds, and a footbridge over a creek, with downtown buildings beyond."
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            >
-          </figure>
-          <h3><a href="https://gattonpark.org/visit/faqs/">Gatton Park</a></h3>
-          <p>Eleven acres downtown, built on a parking lot, with the creek Lexington was founded on running through the middle of it.</p>
-        </article>
       </div>
     </div>
   </section>
 
-  <section class="lexington-section lexington-section-affordability lexington-container" aria-labelledby="lexington-affordability">
-    <figure class="lexington-feature-visual lexington-skyline-visual">
+  <section class="lexington-section lexington-section-affordability" aria-labelledby="lexington-affordability">
+    <div class="lexington-container">
+      <h2 id="lexington-affordability">Room to live</h2>
+    </div>
+    <figure class="lexington-feature-visual lexington-bleed lexington-skyline-visual">
       <img
         class="lexington-feature-image"
         src="{{ '/assets/images/lexington-at-night-skyline.webp' | relative_url }}"
@@ -153,8 +154,7 @@ permalink: /lexington/
         decoding="async"
       >
     </figure>
-    <div class="lexington-section-content">
-      <h2 id="lexington-affordability">Room to live</h2>
+    <div class="lexington-container lexington-section-content">
       <p>A postdoc salary goes considerably further here than in Boston, the Bay, or San Diego. That is the difference between renting a room and having your own place, and between deferring a life and starting one.</p>
       <figure class="lexington-affordability-visual">
         <a
@@ -183,9 +183,4 @@ permalink: /lexington/
       <p class="lexington-community"><a href="https://www.lexingtonky.gov/government/departments-programs/global-lex/global-lex-services">Global Lex</a> helps international residents get oriented, the <a href="https://www.lexpublib.org/english-language-learning">public library</a> runs free English conversation groups, and the <a href="https://www.lexpridecenter.org/lexington-pride-center">Lexington Pride Center</a> hosts community events and services.</p>
     </div>
   </section>
-  <div class="lexington-cta lexington-container">
-    <!-- TODO copy: Brandon to supply one first-person sentence. -->
-    <p>TODO: One first-person sentence from Brandon.</p>
-    <div class="lexington-link-row"><a class="lexington-primary-link" href="{{ '/join/' | relative_url }}">See open positions</a></div>
-  </div>
 </main>
