@@ -12,7 +12,7 @@ permalink: /lexington/
   <header class="lexington-intro lexington-container">
     <div class="lexington-intro-copy">
       <h1>Life in Lexington</h1>
-      <p class="lexington-lede">A city of 320,000 on an eroded dome of limestone, twenty minutes from open country and about a third the rent of the coasts.</p>
+      <p class="lexington-lede">A city of 320,000 on an eroded dome of limestone, four miles from open country and about a third the rent of the coasts.</p>
       <p class="lexington-accolade">Named one of the <a href="https://www.cntraveler.com/gallery/best-cities-us">Best Small Cities in the U.S.</a> in Condé Nast Traveler’s 2025 Readers’ Choice Awards.</p>
     </div>
     <figure class="lexington-map lexington-map-intro">
@@ -73,7 +73,6 @@ permalink: /lexington/
     <div class="lexington-container lexington-section-content">
       <h2 id="lexington-outside">Outside</h2>
       <p>The compact city has a practical consequence: all four of these are half an hour or less from the bench.</p>
-      <p class="lexington-swipe-cue">Swipe to explore <span aria-hidden="true">→</span></p>
       <div class="lexington-outside-grid">
         <article class="lexington-outside-card">
           <figure class="lexington-feature-visual">
@@ -136,6 +135,12 @@ permalink: /lexington/
           <p>A hundred acres of the state botanical garden on UK's own campus, including a path that walks you through all seven of Kentucky's physiographic regions.</p>
         </article>
       </div>
+      <div class="lexington-carousel-dots" role="img" aria-label="Outside card 1 of 4">
+        <span class="is-active" aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </div>
     </div>
   </section>
 
@@ -157,13 +162,12 @@ permalink: /lexington/
     <div class="lexington-container lexington-section-content">
       <p>A postdoc salary goes considerably further here than in Boston, the Bay, or San Diego. That is the difference between renting a room and having your own place, and between deferring a life and starting one.</p>
       <!-- Sources: Commute averages 20.9 minutes, rounded to 21, from U.S. Census ACS via Data USA, Lexington-Fayette.
-           Nonstops: Blue Grass Airport lists 18 destinations; CVG lists 50+, including London and Paris.
-           TODO fact check: Verify 20 minutes to open country (also used in the hero) against a map from the lab at 741 S. Limestone to the urban service boundary. -->
+           Nonstops: Blue Grass Airport lists 18 destinations; CVG lists 50+, including London and Paris. -->
       <dl class="lexington-numbers">
         <div><dt>average two-bedroom rent</dt><dd>$1,391</dd></div>
         <div><dt>average commute</dt><dd>21 min</dd></div>
-        <div><dt>to open country</dt><dd>20 min</dd></div>
-        <div><dt>nonstops from Lexington / from Cincinnati, 90 min north</dt><dd>18 / 50+</dd></div>
+        <div><dt>to open country</dt><dd>4 mi</dd></div>
+        <div><dt>nonstop destinations, plus 50+ from Cincinnati</dt><dd>18</dd></div>
       </dl>
       <p class="lexington-sources">Rent and commute figures from U.S. Census data; flight counts from Blue Grass Airport and CVG.</p>
       <figure class="lexington-affordability-visual">
@@ -184,3 +188,35 @@ permalink: /lexington/
     </div>
   </section>
 </main>
+
+<script>
+  (() => {
+    const track = document.querySelector('.lexington-outside-grid');
+    const indicator = document.querySelector('.lexington-carousel-dots');
+    const cards = [...track.children];
+    const dots = [...indicator.children];
+
+    function updatePosition() {
+      const edge = track.getBoundingClientRect().left;
+      const padding = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      let active = 0;
+      let nearest = Infinity;
+      cards.forEach((card, index) => {
+        const target = Math.max(0, Math.min(maxScroll,
+          card.getBoundingClientRect().left - edge + track.scrollLeft - padding));
+        const distance = Math.abs(track.scrollLeft - target);
+        if (distance < nearest) {
+          nearest = distance;
+          active = index;
+        }
+      });
+      dots.forEach((dot, index) => dot.classList.toggle('is-active', index === active));
+      indicator.setAttribute('aria-label', `Outside card ${active + 1} of ${cards.length}`);
+    }
+
+    track.addEventListener('scroll', updatePosition, { passive: true });
+    window.addEventListener('resize', updatePosition);
+    updatePosition();
+  })();
+</script>
