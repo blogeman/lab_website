@@ -1113,7 +1113,13 @@ h1 {
   letter-spacing: -0.035em;
   line-height: 1.15;
 }
-.lexington-outside-card h3 a,
+.lexington-outside-card h3 a {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 0.22em;
+}
+.lexington-outside-card h3 a:hover { text-decoration: underline; }
+
 .lexington-community a {
   color: var(--accent);
   text-decoration: underline;
@@ -1124,7 +1130,7 @@ h1 {
 .lexington-numbers {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2rem;
+  gap: 2rem 0;
   margin-block: 2.5rem;
   padding-top: 2rem;
   border-top: 1px solid var(--line);
@@ -1133,14 +1139,23 @@ h1 {
   max-width: none;
   margin: 0 0 clamp(2rem, 4vw, 3rem);
 }
-.lexington-numbers > div { display: flex; flex-direction: column; }
-.lexington-numbers dt { color: var(--muted); font-size: 0.85rem; }
+.lexington-numbers > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-inline: 1.5rem;
+}
+.lexington-numbers > div:first-child { padding-left: 0; }
+.lexington-numbers > div:last-child { padding-right: 0; }
+.lexington-numbers > div + div { border-left: 1px solid var(--line); }
+.lexington-numbers dt { color: var(--muted); font-size: 0.78rem; }
 .lexington-numbers dd {
   order: -1;
-  margin: 0 0 0.5rem;
-  font-size: clamp(2rem, 3vw, 3rem);
-  letter-spacing: -0.035em;
-  line-height: 1.15;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
 .lexington-section-content > .lexington-sources { font-size: 0.85rem; }
 .lexington-section-content > .lexington-community { max-width: none; font-size: 0.85rem; }
@@ -1168,6 +1183,9 @@ h1 {
   .lexington-feature-section { grid-template-columns: minmax(0, 1fr); }
   .lexington-outside-grid,
   .lexington-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lexington-numbers { column-gap: 1.5rem; }
+  .lexington-numbers > div { padding-inline: 0; }
+  .lexington-numbers > div + div { border-left: 0; }
 }
 
 @media (max-width: 720px) {
